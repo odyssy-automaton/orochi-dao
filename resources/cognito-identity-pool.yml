@@ -2,7 +2,7 @@ Resources:
   CognitoIdentityPool:
     Type: AWS::Cognito::IdentityPool
     Properties:
-      IdentityPoolName: molochfork${self:custom.stage}IdentityPool
+      IdentityPoolName: orochidao${self:custom.stage}IdentityPool
       AllowUnauthenticatedIdentities: true
       CognitoIdentityProviders:
         - ClientId:
