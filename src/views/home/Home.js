@@ -12,7 +12,7 @@ import Loading from '../../components/shared/Loading';
 import { GET_METADATA } from '../../utils/Queries';
 
 import './Home.scss';
-import WethService from '../../utils/WethService';
+import DaiService from '../../utils/DaiService';
 
 const Home = ({ client }) => {
   const [vizData, setVizData] = useState([]);
@@ -24,7 +24,7 @@ const Home = ({ client }) => {
   useEffect(() => {
     const fetchData = async () => {
       const web3Service = new Web3Service();
-      const wethService = new WethService();
+      const daiService = new DaiService();
 
       const mcDao = new McDaoService();
 
@@ -42,7 +42,7 @@ const Home = ({ client }) => {
           const indexes = [];
           for (let x = 0; x <= blockIntervals; x++) {
             const atBlock = firstBlock + Math.floor(dataLength) * x;
-            balancePromises.push(wethService.balanceOf(guildBankAddr, atBlock));
+            balancePromises.push(daiService.balanceOf(guildBankAddr, atBlock));
             indexes.push(x);
           }
           const balanceData = await Promise.all(balancePromises);
@@ -80,7 +80,7 @@ const Home = ({ client }) => {
           for (let x = 0; x <= blockIntervals; x++) {
             const atBlock = firstBlock + Math.floor(dataLength) * x;
             sharePromises.push(mcDao.getTotalShares(atBlock));
-            balancePromises.push(wethService.balanceOf(guildBankAddr, atBlock));
+            balancePromises.push(daiService.balanceOf(guildBankAddr, atBlock));
             indexes.push(x);
           }
           const shareData = await Promise.all(sharePromises);
@@ -108,7 +108,7 @@ const Home = ({ client }) => {
         return (
           <div className="Home">
             <div className="Intro">
-              <h1>PokéMol DAO</h1>
+              <h1>Orochi DAO</h1>
               <p>
                 Is that a Moloch in your pocket, <br />
                 or are you just happy to see me?

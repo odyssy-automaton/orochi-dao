@@ -6,11 +6,11 @@ import Routes from './Routes';
 import Header from './components/header/Header';
 import Loading from './components/shared/Loading';
 import McDaoService from './utils/McDaoService';
-import WethService from './utils/WethService';
+import DaiService from './utils/DaiService';
 import Web3Service from './utils/Web3Service';
 
 const mcDao = new McDaoService();
-const weth = new WethService();
+const dai = new DaiService();
 const web3 = new Web3Service();
 
 const App = ({ client }) => {
@@ -27,7 +27,7 @@ const App = ({ client }) => {
       const periodDuration = await mcDao.getPeriodDuration();
       const processingReward = await mcDao.getProcessingReward();
       const proposalDeposit = await mcDao.getProposalDeposit();
-      const guildBankValue = await weth.balanceOf(guildBankAddr);
+      const guildBankValue = await dai.balanceOf(guildBankAddr);
 
       client.writeData({
         data: {
@@ -40,7 +40,7 @@ const App = ({ client }) => {
           processingReward: web3.fromWei(processingReward),
           proposalDeposit: web3.fromWei(proposalDeposit),
           guildBankValue: web3.fromWei(guildBankValue),
-          shareValue: web3.fromWei(guildBankValue) / totalShares,
+          shareValue:  (guildBankValue / totalShares) / 1e18 ,
         },
       });
       setloading(false);
