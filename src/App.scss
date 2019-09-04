@@ -347,9 +347,9 @@ textarea {
   appearance: none;
   border: none;
   background-color: $app-light;
-  color: black;
+  color: $base-font-color;
   // Style
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid $base-font-color;
   width: 100%;
   max-width: 100%;
   font-size: 21px;
