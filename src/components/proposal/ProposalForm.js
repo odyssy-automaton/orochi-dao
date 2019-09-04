@@ -33,7 +33,7 @@ const ProposalForm = ({ history, client }) => {
       {loading && <Loading />}
 
       <div>
-        {currentWallet.dai > proposalDeposit && currentWallet.allowance > proposalDeposit ? (
+        {currentWallet.dai >= proposalDeposit && currentWallet.allowance >= proposalDeposit ? (
           <Formik
             initialValues={{
               title: '',
