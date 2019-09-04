@@ -15,6 +15,19 @@
 body { 
   background-color: $app-background;
   color: $base-font-color;
+  &::before {
+    content: "";
+    background-image: url('assets/background.jpg');
+    background-blend-mode: color;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    opacity: .25;
+    top: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
 }
 
 // Typography

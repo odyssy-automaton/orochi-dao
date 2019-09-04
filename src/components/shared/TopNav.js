@@ -4,7 +4,7 @@ import { withRouter, Link } from 'react-router-dom';
 import { CurrentUserContext } from '../../contexts/Store';
 import BcToast from './BcToast';
 
-import Brand from '../../assets/japanese-ogre.png';
+import Brand from '../../assets/logo.png';
 import './TopNav.scss';
 import useModal from './useModal';
 import Modal from './Modal'
@@ -29,7 +29,7 @@ const TopNav = (props) => {
         <p>back</p>
       ) : (
         <Link className="Brand" to="/">
-          <img src={Brand} alt="Pocket Moloch" />
+          <img src={Brand} alt="Orochi DAO" />
         </Link>
       )}
 
