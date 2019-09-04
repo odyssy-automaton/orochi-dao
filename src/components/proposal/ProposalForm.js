@@ -33,7 +33,7 @@ const ProposalForm = ({ history, client }) => {
       {loading && <Loading />}
 
       <div>
-        {currentWallet.dai > proposalDeposit ? (
+        {currentWallet.dai > proposalDeposit && currentWallet.allowance > proposalDeposit ? (
           <Formik
             initialValues={{
               title: '',
@@ -210,7 +210,7 @@ const ProposalForm = ({ history, client }) => {
             <p className="Pad">Your ETH is empty or dangerously low.</p>
             <p className="Pad">
               If you are going to submit a proposal you need some ETH for gas
-              and DAI for deposit ({proposalDeposit}). Go to your Account to top them off.
+              and approved DAI for deposit ({proposalDeposit}). Go to your Account to top them off.
             </p>
             <p>
               <Link to="/account">
