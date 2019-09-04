@@ -18,7 +18,12 @@ import {
 } from '../../contexts/Store';
 import Loading from '../shared/Loading';
 
-const ProposalForm = ({ history }) => {
+import { GET_METADATA } from '../../utils/Queries';
+import { withApollo } from 'react-apollo';
+
+const ProposalForm = ({ history, client }) => {
+  const { proposalDeposit } = client.cache.readQuery({ query: GET_METADATA });
+
   const [loading, setLoading] = useContext(LoaderContext);
   const [currentUser] = useContext(CurrentUserContext);
   const [currentWallet] = useContext(CurrentWalletContext);
@@ -28,7 +33,7 @@ const ProposalForm = ({ history }) => {
       {loading && <Loading />}
 
       <div>
-        {currentWallet.eth > 0.004 && currentWallet.dai > 0 ? (
+        {currentWallet.dai > proposalDeposit ? (
           <Formik
             initialValues={{
               title: '',
@@ -126,6 +131,7 @@ const ProposalForm = ({ history }) => {
           >
             {({ isSubmitting }) => (
               <Form className="Form">
+                <h3>Proposal deposit: {proposalDeposit} DAI</h3>
                 <Field name="title">
                   {({ field, form }) => (
                     <div className={field.value ? 'Field HasValue' : 'Field '}>
@@ -204,7 +210,7 @@ const ProposalForm = ({ history }) => {
             <p className="Pad">Your ETH is empty or dangerously low.</p>
             <p className="Pad">
               If you are going to submit a proposal you need some ETH for gas
-              and DAI for deposit. Go to your Account to top them off.
+              and DAI for deposit ({proposalDeposit}). Go to your Account to top them off.
             </p>
             <p>
               <Link to="/account">
@@ -227,4 +233,4 @@ const ProposalForm = ({ history }) => {
   );
 };
 
-export default withRouter(ProposalForm);
+export default withRouter(withApollo(ProposalForm));
