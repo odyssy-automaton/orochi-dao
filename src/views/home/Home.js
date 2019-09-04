@@ -139,7 +139,7 @@ const Home = ({ client }) => {
                   <Area
                     type="monotone"
                     dataKey="y"
-                    stroke="rgba(203,46,206,1)"
+                    stroke="#2fca8a"
                     fill="url(#grade)"
                   />
                 </AreaChart>
