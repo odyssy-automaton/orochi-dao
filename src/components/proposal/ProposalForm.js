@@ -23,7 +23,7 @@ import { withApollo } from 'react-apollo';
 
 const ProposalForm = ({ history, client }) => {
   const { proposalDeposit } = client.cache.readQuery({ query: GET_METADATA });
-
+  console.log('proposalDeposit', proposalDeposit)
   const [loading, setLoading] = useContext(LoaderContext);
   const [currentUser] = useContext(CurrentUserContext);
   const [currentWallet] = useContext(CurrentWalletContext);
