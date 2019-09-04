@@ -13,6 +13,7 @@ import { GET_METADATA } from '../../utils/Queries';
 
 import './Home.scss';
 import DaiService from '../../utils/DaiService';
+import IconDai from '../../components/shared/IconDai';
 
 const Home = ({ client }) => {
   const [vizData, setVizData] = useState([]);
@@ -126,12 +127,12 @@ const Home = ({ client }) => {
                     >
                       <stop
                         offset="0%"
-                        stopColor="rgba(189,134,254,1)"
+                        stopColor="#b562db"
                         stopOpacity={1}
                       />
                       <stop
                         offset="100%"
-                        stopColor="rgba(189,134,254,1)"
+                        stopColor="#b562db"
                         stopOpacity={0}
                       />
                     </linearGradient>
@@ -153,7 +154,7 @@ const Home = ({ client }) => {
                 <h5>
                   Total Sponsorship
                 </h5>
-                <h2>Ξ {data.guildBankValue}</h2>
+                <h2><span className="Currency--Large"><IconDai /></span>{data.guildBankValue}</h2>
               </div>
               <div className="Row">
                 <div
@@ -172,7 +173,7 @@ const Home = ({ client }) => {
                   <h5>
                     Share Value
                   </h5>
-                  <h3>Ξ {data.shareValue.toFixed(4)}</h3>
+                  <h3><span className="Currency--Standard"><IconDai /></span>{data.shareValue.toFixed(4)}</h3>
                 </div>
               </div>
             </div>
