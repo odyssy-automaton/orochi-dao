@@ -27,13 +27,15 @@ const ProposalForm = ({ history, client }) => {
   const [loading, setLoading] = useContext(LoaderContext);
   const [currentUser] = useContext(CurrentUserContext);
   const [currentWallet] = useContext(CurrentWalletContext);
+  console.log('currentWallet.dai', currentWallet.dai)
+  console.log('currentWallet.allowance', currentWallet.allowance)
 
   return (
     <div>
       {loading && <Loading />}
 
       <div>
-        {currentWallet.dai >= proposalDeposit && currentWallet.allowance >= proposalDeposit ? (
+        {true ? (
           <Formik
             initialValues={{
               title: '',
