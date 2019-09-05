@@ -12,6 +12,7 @@ import {
 import { CurrentUserContext } from '../../contexts/Store';
 import { GET_METADATA } from '../../utils/Queries';
 import { withApollo } from 'react-apollo';
+import IconDai from '../shared/IconDai';
 
 import './ProposalDetail.scss';
 
@@ -72,7 +73,7 @@ const ProposalDetail = ({
         <div className="Tribute">
           <h5>Tribute</h5>
           <h2 className="Data">
-            Ξ {web3Service && web3Service.fromWei(proposal.tokenTribute)}
+            <span className="Currency--Standard"><IconDai /></span>{web3Service && web3Service.fromWei(proposal.tokenTribute)}
           </h2>
         </div>
       </div>
