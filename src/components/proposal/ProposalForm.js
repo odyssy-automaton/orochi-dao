@@ -23,12 +23,14 @@ import { withApollo } from 'react-apollo';
 
 const ProposalForm = ({ history, client }) => {
   const { proposalDeposit } = client.cache.readQuery({ query: GET_METADATA });
-  console.log('proposalDeposit', proposalDeposit)
+  console.log('proposalDeposit', proposalDeposit); // 5
   const [loading, setLoading] = useContext(LoaderContext);
   const [currentUser] = useContext(CurrentUserContext);
   const [currentWallet] = useContext(CurrentWalletContext);
-  console.log('currentWallet.dai', currentWallet.dai)
-  console.log('currentWallet.allowance', currentWallet.allowance)
+  console.log('currentWallet.dai', currentWallet.dai); //10 
+  console.log('currentWallet.allowance', currentWallet.allowance); // 10
+  console.log('is ok check', currentWallet.dai >= proposalDeposit && currentWallet.allowance >= proposalDeposit)
+  console.log('is ok check, parseInt', +currentWallet.dai >= +proposalDeposit && +currentWallet.allowance >= +proposalDeposit)
 
   return (
     <div>
@@ -75,7 +77,7 @@ const ProposalForm = ({ history, client }) => {
                   values.sharesRequested,
                   `id~${uuid}~title~${values.title}`,
                 );
-                console.log('dai tribute 18e', values.tokenTribute)
+                console.log('dai tribute 18e', values.tokenTribute);
                 const data = await dao.submitProposal(
                   currentUser.attributes['custom:account_address'],
                   values.applicant,
@@ -90,7 +92,7 @@ const ProposalForm = ({ history, client }) => {
                   bnZed,
                   data,
                 );
-                console.log('esitimated', estimated)
+                console.log('esitimated', estimated);
                 if (ethToWei(currentWallet.eth).lt(estimated.totalCost)) {
                   alert(
                     `you need more gas, at least: ${web3Service.fromWei(
@@ -212,7 +214,8 @@ const ProposalForm = ({ history, client }) => {
             <p className="Pad">Your ETH is empty or dangerously low.</p>
             <p className="Pad">
               If you are going to submit a proposal you need some ETH for gas
-              and approved DAI for deposit ({proposalDeposit}). Go to your Account to top them off.
+              and approved DAI for deposit ({proposalDeposit}). Go to your
+              Account to top them off.
             </p>
             <p>
               <Link to="/account">
