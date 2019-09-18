@@ -27,17 +27,14 @@ const ProposalForm = ({ history, client }) => {
   const [loading, setLoading] = useContext(LoaderContext);
   const [currentUser] = useContext(CurrentUserContext);
   const [currentWallet] = useContext(CurrentWalletContext);
-  console.log('currentWallet.dai', currentWallet.dai); //10 
-  console.log('currentWallet.allowance', currentWallet.allowance); // 10
-  console.log('is ok check', currentWallet.dai >= proposalDeposit && currentWallet.allowance >= proposalDeposit)
-  console.log('is ok check, parseInt', +currentWallet.dai >= +proposalDeposit && +currentWallet.allowance >= +proposalDeposit)
 
   return (
     <div>
       {loading && <Loading />}
 
       <div>
-        {true ? (
+        {+currentWallet.dai >= +proposalDeposit &&
+        +currentWallet.allowance >= +proposalDeposit ? (
           <Formik
             initialValues={{
               title: '',
